@@ -1,0 +1,30 @@
+import tkinter, calendar
+screen = tkinter.Tk()
+screen.geometry("500x500")
+screen.title("Calendar")
+def show():
+    inp = input.get()
+    inp = int(inp)
+    cal = calendar.calendar(inp)
+    cal_screen = tkinter.Tk()
+    cal_screen.geometry("1000x1000")
+    cal_screen.title("Output")
+    txt = tkinter.Text(cal_screen, height = 100, width = 100)
+    txt.grid(row = 3, column = 2)
+    txt.insert(tkinter.END, cal)
+    cal_screen.mainloop()
+    
+
+def leave():
+    screen.destroy()
+label1 = tkinter.Label(screen, text = "Calendar")
+label1.grid(row = 1, column = 2,)
+label2 = tkinter.Label(screen, bg = "Green", text = "Enter Year")
+label2.grid(row = 2, column = 2)
+input = tkinter.Entry(screen)
+input.grid(row = 3, column = 2)
+show_calendar = tkinter.Button(screen, bg = "Red", text = "Show Calendar", command = show)
+show_calendar.grid(row = 4, column = 2)
+exit = tkinter.Button(screen, bg = "Red", text = "Exit", command = leave)
+exit.grid(row = 5, column = 2)
+screen.mainloop()
