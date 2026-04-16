@@ -2,12 +2,27 @@ import tkinter, random
 screen = tkinter.Tk()
 screen.geometry("500x150")
 screen.title("Rock Paper Scissors")
+playerscore = 0
+computerscore = 0
 options = ["rock", "paper", "scissors"]
 def RPS(Player_Selected):
+    global playerscore, computerscore
     compselect = random.choice(options)
     Label5.config(text = "You selected: " + Player_Selected)
     Label6.config(text = "Computer Selected: " + compselect)
-    
+    if Player_Selected == compselect:
+        Label2.config(text = "Draw!")
+    if Player_Selected == "paper" and compselect == "rock" or Player_Selected == "scissors" and compselect == "paper" or Player_Selected == "rock" and compselect == "scissors":
+        Label2.config(text = "You Win!")
+        playerscore = playerscore + 1
+        Label7.config(text = "Your Score: " + str(playerscore))
+        Label8.config(text = "Computer Score: " + str(computerscore))
+    if compselect == "rock" and Player_Selected == "scissors" or compselect == "paper" and Player_Selected == "rock" or compselect == "scissors" and Player_Selected == "paper":
+        Label2.config(text = "Computer Wins!")
+        computerscore = computerscore + 1
+        Label7.config(text = "Your Score: " + str(playerscore))
+        Label8.config(text = "Computer Score: " + str(computerscore))
+                      
 Label1 = tkinter.Label(screen, text = "Rock Paper Scissors")
 Label2 = tkinter.Label(screen, text = "")
 Label3 = tkinter.Label(screen, text = "Your Options:")
