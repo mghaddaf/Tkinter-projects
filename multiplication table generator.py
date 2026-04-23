@@ -1,18 +1,19 @@
 import tkinter, tkinter.ttk
 
 screen = tkinter.Tk()
-screen.geometry("300x700")
+screen.geometry("350x700")
 screen.title("Multiplication table")
 def GenerateTable():
     number = int(Combobox1.get())
-    for i in range(x_rate):
-        equation = number + "X" + i + "=" + number * i
+    equation = ""
+    for i in range(x_rate.get() + 1):
+        equation += str(number) + "X" + str(i) + "=" + str(number * i) + "\n"
         i = i + 1
     Label3.config(text = equation)
 Label1 = tkinter.Label(screen, text = "Mathematical Table")
 Label2 = tkinter.Label(screen, text = "Number and Range: ")
 Label3 = tkinter.Label(screen, text = "")
-Button1 = tkinter.Button(screen, text = "Generate")
+Button1 = tkinter.Button(screen, text = "Generate", command = GenerateTable)
 Combobox1 = tkinter.ttk.Combobox(screen)
 Numbers = []
 for i in range(101):
