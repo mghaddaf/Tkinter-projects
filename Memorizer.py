@@ -1,10 +1,14 @@
-import tkinter
+import tkinter, tkinter.filedialog
 screen = tkinter.Tk()
-screen.geometry("300x200")
+screen.geometry("300x500")
 screen.title("Memorizer")
 
 def OpenButton():
-    pass
+    File1 = tkinter.filedialog.askopenfile()
+    if File1 != None:
+        Items = File1.readlines()
+        for item in Items:
+            Listbox1.insert(tkinter.END, item)
 def AddButton():
     data = Entry1.get()
     Listbox1.insert(tkinter.END, data)
@@ -13,7 +17,10 @@ def DeleteButton():
     item = Listbox1.curselection()
     Listbox1.delete(item)
 def SaveButton():
-    pass
+    File1 = tkinter.filedialog.asksaveasfile()
+    if File1 != None:
+        for item in Listbox1.get(0, tkinter.END):
+            print(item, file = File1)
 Listbox1 = tkinter.Listbox(screen)
 Button1 = tkinter.Button(screen, text = "Save", command = SaveButton)
 Button2 = tkinter.Button(screen, text= "Delete", command = DeleteButton)
