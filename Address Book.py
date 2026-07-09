@@ -37,15 +37,25 @@ def DeleteButton():
     name = Listbox1.get(index)
     del data[name]
     UpdateListBox()
+
 def SaveButton():
     File1 = tkinter.filedialog.asksaveasfile()
     if File1 != None:
         print(data, file = File1)
 
+def EditButton():
+    namedata = Listbox1.get(Listbox1.curselection())
+    info = data[namedata]
+    Entry1.insert(tkinter.END, namedata)
+    Entry2.insert(tkinter.END, info[0])
+    Entry3.insert(tkinter.END, info[1])
+    Entry4.insert(tkinter.END, info[2])
+    Entry5.insert(tkinter.END, info[3])
+
 def view(event):
     namedata = Listbox1.get(Listbox1.curselection())
     info = data[namedata]
-    tkinter.messagebox.showinfo("Data", info)
+    tkinter.messagebox.showinfo("Data", "Name: " + namedata + "\n Address: " + info[0] + "\n Mobile: " + info[1] + "\n Email: " + info[2] + "\n Birthday: " + info[3])
 
 
 Label1 = tkinter.Label(screen, text = "My address book")
@@ -55,7 +65,7 @@ Label4 = tkinter.Label(screen, text = "Mobile:")
 Label5 = tkinter.Label(screen, text = "Email:")
 Label6 = tkinter.Label(screen, text = "Birthday:")
 Button1 = tkinter.Button(screen, text = "Open", command = OpenButton)
-Button2 = tkinter.Button(screen, text ="Edit")
+Button2 = tkinter.Button(screen, text ="Edit", command = EditButton)
 Button3 = tkinter.Button(screen, text = "Delete", command = DeleteButton)
 Button4 = tkinter.Button(screen, text = "Save", command = SaveButton)
 Button5 = tkinter.Button(screen, text = "Update / Add", command = AddButton)
