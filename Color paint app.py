@@ -12,7 +12,10 @@ eraseron = False
 def draw(event):
     global oldx, oldy
     global penthickness
-    pencolor = color
+    if eraseron == True:
+        pencolor = "white"
+    else:
+        pencolor = color
     penthickness = Scale1.get()
     if oldx and oldy:
         Canvas1.create_line(oldx, oldy, event.x, event.y, fill = pencolor, width = penthickness)
@@ -26,6 +29,7 @@ def reset(event):
 
 
 def penbutton():
+    global eraseron
     eraseron = False
 def brushbutton():
     pass
