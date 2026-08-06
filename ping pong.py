@@ -11,11 +11,21 @@ class Player():
         self.player = Canvas1.create_rectangle(startx, starty, endx, endy, outline = color, fill = color, width = 5)
         self.velocityy = 0.1
 
-    def move(self):
+    def move(self, event):
         Canvas1.move(self.player, 0, self.velocityy)
         playerpos = Canvas1.coords(self.player)
         if playerpos[1] < 0 or playerpos[1] > 390:
             self.velocityy = 0
+
+    def move_up(self, event):
+        self.velocityy = -1
+
+    def move_down(self, event):
+        self.velocityy = 1
+
+    
+
+
 class Ball():
     def __init__(self, width, color):
         self.ball = Canvas1.create_oval(340, 240, 360, 260, fill = color)
@@ -32,6 +42,10 @@ class Ball():
 Player1 = Player(10, 300, 20, 200, "red")
 Player2 = Player(690, 300, 680, 200, "blue")
 Ball1 = Ball(1, "yellow")
+Canvas1.bind_all("<KeyPress-W>", Player1.move_up)
+Canvas1.bind_all("<KeyPress-S>", Player1.move_down)
+Canvas1.bind-all("<KeyPress-Up>", Player2.move_up)
+Canvas1.bind_all("<KeyPress-Down>", Player2.move_down)
 
 while True:
     Ball1.move()
